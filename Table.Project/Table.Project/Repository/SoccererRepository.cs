@@ -12,9 +12,20 @@ namespace Table.Project.Repository
         {
             this._context = _context;
         }
+
+        public async Task<FifaSoccerer> Get(int id)
+        {
+            return await _context.FifaSoccerers.FirstOrDefaultAsync(x=>x.Id==id);
+        }
+
         public async Task<List<FifaSoccerer>> GetAll()
         {
             return await _context.FifaSoccerers.ToListAsync();
+        }
+
+        public  IQueryable<FifaSoccerer> GetAllFifaPlayersAsQuery()
+        {
+            return  _context.FifaSoccerers.AsQueryable();
         }
     }
 }
